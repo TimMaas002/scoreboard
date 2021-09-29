@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Player from "./Player";
 import AddPlayerForm from "./AddPlayerForm";
@@ -14,7 +14,11 @@ export default function Scoreboard() {
   return (
     <div className="Scoreboard">
       <h1>Scoreboard</h1>
-      {/* TODO implement this */}
+      <ul>
+        {players.map((player) => {
+          return <Player key={player.id} name={player.name} />;
+        })}
+      </ul>
     </div>
   );
 }
