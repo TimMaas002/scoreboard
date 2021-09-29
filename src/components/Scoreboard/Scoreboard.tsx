@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import "./Scoreboard.scss";
 
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+
 import Player from "../Player/Player";
 import AddPlayerForm from "../AddPlayerForm/AddPlayerForm";
 
@@ -71,21 +81,32 @@ export default function Scoreboard() {
 
   return (
     <div>
-      <p>
-        Sort order:{" "}
-        <select
-          onChange={(event) => {
-            setSortBy(event.target.value);
-          }}
-          value={sortBy}
-        >
-          <option value="score">Sort by score</option>
-          <option value="name">Sort by name</option>
-        </select>{" "}
-        - <button onClick={resetScore}>Reset</button>
-      </p>
-      <p>Player's Scores:</p>
-      <ul>
+      <Typography variant="h2">Scoreboard</Typography>
+      <Box>
+        <FormControl>
+          <InputLabel id="sort-label">Sort order:</InputLabel>
+          <Select
+            labelId="sort-label"
+            label="Sort order"
+            onChange={(event) => {
+              setSortBy(event.target.value);
+            }}
+            value={sortBy}
+          >
+            <MenuItem value="score">Sort by score</MenuItem>
+            <MenuItem value="name">Sort by name</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <Button variant="outlined" onClick={resetScore}>
+        Reset
+      </Button>
+      <Typography>Player's Scores:</Typography>
+      <Stack
+        direction="column"
+        divider={<Divider orientation="vertical" flexItem />}
+        spacing={2}
+      >
         {playersSorted.map((player) => {
           return (
             <Player
@@ -98,7 +119,7 @@ export default function Scoreboard() {
             />
           );
         })}
-      </ul>
+      </Stack>
       <AddPlayerForm addPlayer={addPlayer} />
     </div>
   );

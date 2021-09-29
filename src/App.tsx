@@ -1,15 +1,14 @@
 import React from "react";
 import "./App.scss";
 
-import Title from "./components/Title/Title";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
+import Container from "@mui/material/Container";
 
 function App() {
   return (
-    <div className="App">
-      <Title />
+    <Container maxWidth="md">
       <Scoreboard />
-    </div>
+    </Container>
   );
 }
 
